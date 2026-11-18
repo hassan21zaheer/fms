@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --text-display: 28px;
+    --text-h2: 18px;
+    --text-body: 14px;
+    --text-caption: 12px;
+    --text-micro: 11px;
+    --text-mono: 12px;
+
+    --leading-display: 1.2;
+    --leading-h2: 1.3;
+    --leading-body: 1.5;
+    --leading-caption: 1.4;
+    --leading-micro: 1.4;
+    --leading-mono: 1.5;
+
+    --weight-display: 800;
+    --weight-h2: 700;
+    --weight-body: 500;
+    --weight-caption: 500;
+    --weight-micro: 600;
+    --weight-mono: 500;
+  }
+
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  html {
+    font-family: var(--font-sans);
+  }
+
+  /* Form controls without their own text colour stay readable in both themes. */
+  input,
+  select,
+  textarea {
+    color: #0f172a;
+  }
+
+  .dark input,
+  .dark select,
+  .dark textarea {
+    color: #ffffff;
+  }
+}
+
+@keyframes fms-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes fms-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+
+@keyframes fms-pulse {
+  0%,
+  100% {
+    scale: 0.92;
+  }
+  50% {
+    scale: 1.08;
+  }
+}
+
+@keyframes fms-sway {
+  0%,
+  100% {
+    transform: rotateY(-7deg) rotateX(3deg);
+  }
+  50% {
+    transform: rotateY(7deg) rotateX(-3deg);
+  }
+}
+
+@keyframes fms-step {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fms-step {
+  animation: fms-step 260ms ease-out;
+}
+
+.fms-spin {
+  animation: fms-spin 9s linear infinite;
+}
+
+.fms-float {
+  animation: fms-float 5.5s ease-in-out infinite;
+}
+
+.fms-pulse {
+  animation: fms-pulse 4.5s ease-in-out infinite;
+}
+
+.fms-sway {
+  animation: fms-sway 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fms-step,
+  .fms-spin,
+  .fms-float,
+  .fms-pulse,
+  .fms-sway {
+    animation: none;
+  }
+}
+
+@layer utilities {
+  .text-display {
+    font-size: var(--text-display);
+    line-height: var(--leading-display);
+    font-weight: var(--weight-display);
+  }
+  .text-h2 {
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+    font-weight: var(--weight-h2);
+  }
+  .text-body {
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    font-weight: var(--weight-body);
+  }
+  .text-caption {
+    font-size: var(--text-caption);
+    line-height: var(--leading-caption);
+    font-weight: var(--weight-caption);
+  }
+  .text-micro {
+    font-size: var(--text-micro);
+    line-height: var(--leading-micro);
+    font-weight: var(--weight-micro);
+  }
+  .text-mono {
+    font-size: var(--text-mono);
+    line-height: var(--leading-mono);
+    font-weight: var(--weight-mono);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 140, 160, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 140, 160, 0.4);
+}
+
+/* ================= Login / Auth background effects ================= */
+@keyframes login-orb-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, -32px, 0) scale(1.08);
+  }
+}
+
+@keyframes login-orb-float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-30px, 26px, 0) scale(0.95);
+  }
+}
+
+@keyframes login-grid-drift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 48px 48px;
+  }
+}
+
+@keyframes login-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-login-orb {
+  animation: login-orb-float 14s ease-in-out infinite;
+}
+
+.animate-login-orb-slow {
+  animation: login-orb-float-slow 18s ease-in-out infinite;
+}
+
+.login-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: login-grid-drift 32s linear infinite;
+}
+
+.login-shimmer-text {
+  background: linear-gradient(90deg, #a5b4fc, #ffffff, #818cf8, #ffffff, #a5b4fc);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: login-shimmer 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-login-orb,
+  .animate-login-orb-slow,
+  .login-grid,
+  .login-shimmer-text {
+    animation: none;
+  }
+}
+
+/* ================= Shine Border ================= */
+@theme {
+  --animate-shine: shine var(--duration, 14s) infinite linear;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+
+/* ================= Liquid Metal Border ================= */
+@property --liquid-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes liquid-metal-spin {
+  to {
+    --liquid-angle: 360deg;
+  }
+}
+
+.liquid-metal-spin {
+  animation: liquid-metal-spin var(--liquid-duration, 5s) infinite linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-metal-spin {
+    animation: none;
+  }
+}
+
+

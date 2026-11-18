@@ -1,0 +1,6 @@
+# Local AI tooling, not part of the project
+.claude/
+CLAUDE.md
+AGENTS.md
+.mcp.json
+backend/boost.json
